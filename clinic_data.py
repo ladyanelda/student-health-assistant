@@ -6,5 +6,6 @@ clinic_info = {
     "contact": "xxx-xxx-xxxx",
     "appointment_info": "Call or walk in during clinic hours. Same day appointments available.",
     "emergency_note": "For emergencies outside clinic hours, call 911 or go to the nearest emergency room.",
-    "appointment_url": "https://gustavus.studenthealthportal.com/"
+    "appointment_url": "https://gustavus.studenthealthportal.com/",
+    "website": "https://gustavus.edu/healthservice/"
 }
