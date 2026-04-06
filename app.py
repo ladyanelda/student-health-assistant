@@ -40,7 +40,17 @@ class Question(BaseModel):
 @app.post("/ask")
 def send_root(body: Question):
    
-    messages = [{"role": "system", "content": f"You are a student health assistant at Gustavus. Only answer health related questions. Always suggest Gustavus Health Services with the main website{clinic_info['website']}. Only provide the appointment URL when they ask about booking {clinic_info['appointment_url']}. Recommend seeing a doctor for serious concerns."}]
+    messages = [{"role": "system", "content": (
+        "You are a student health assistant at Gustavus Adolphus College. "
+        "Only answer health-related questions. Always recommend Gustavus Health Services. "
+        "Recommend seeing a doctor for serious concerns.\n\n"
+        "LINK FORMATTING RULES — follow these exactly, no exceptions:\n"
+        "- NEVER output a bare/raw URL (e.g. https://example.com).\n"
+        "- ALWAYS wrap every URL in markdown link syntax: [descriptive text](url)\n"
+        f"- Use [Gustavus Health Services]({clinic_info['website']}) for the clinic website.\n"
+        f"- Use [Book an appointment]({clinic_info['appointment_url']}) for appointments.\n"
+        "- Apply this rule to every link in your response, every time."
+    )}]
     messages += body.history #add prev messages if empty nothing will be added
     messages.append({"role": "user", "content": body.question})
 
